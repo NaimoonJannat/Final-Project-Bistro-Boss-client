@@ -17,7 +17,7 @@ const Footer = () => {
     </div>
   </nav>
 </footer>
-<footer className="footer footer-center p-4 bg-base-300 text-base-content">
+<footer className="footer footer-center p-4 bg-neutral text-neutral-content">
   <aside>
     <p>Copyright © 2024 - All right reserved by Bistro Boss Ltd</p>
   </aside>

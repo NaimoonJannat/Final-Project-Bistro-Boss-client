@@ -5,7 +5,7 @@ const Header = () => {
         <li><a>Item 3</a></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-black fixed z-10 opacity-60 text-white w-4/5">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
