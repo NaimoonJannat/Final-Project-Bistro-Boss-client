@@ -14,7 +14,8 @@ const PopularMenu = () => {
         })
     })
     return (
-        <div className="my-10">
+       <div>
+         <div className="my-10">
             <Title title="From Our Menu"
             subtitle="Popular Items"></Title>
             <div className="grid md:grid-cols-2 gap-4">
@@ -24,7 +25,12 @@ const PopularMenu = () => {
                     item={item}></MenuItem>)
                 }
             </div>
+           <div className="text-center"> <button className="btn btn-outline border-0 border-b-4 mt-4">See Full Menu</button></div>
         </div>
+        <div className="bg-black w-full p-16 text-center text-white">
+                <h2 className="text-4xl">Call Us: +88 0192345678910</h2>
+        </div>
+       </div>
     );
 };
 
