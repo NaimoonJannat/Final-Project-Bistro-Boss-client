@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const navOptions = <>
-      <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/menu">Our Menu</Link></li>
+        
     </>
     return (
         <div className="navbar bg-black fixed z-10 opacity-60 text-white w-4/5">
