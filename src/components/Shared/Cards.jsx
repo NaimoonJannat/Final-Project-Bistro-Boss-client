@@ -1,5 +1,5 @@
 
-const ReccomendCards = ({item}) => {
+const Cards = ({item}) => {
     const {name, recipe, price, image} = item; 
     return (
         <div className="max-w-xs rounded-md shadow-md bg-[#F3F3F3] text-black">
@@ -16,4 +16,4 @@ const ReccomendCards = ({item}) => {
     );
 };
 
-export default ReccomendCards;
+export default Cards;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Title from "../Shared/Title";
-import ReccomendCards from "./ReccomendCards";
+import Cards from "../Shared/Cards";
 
 
 const Recommendation = () => {
@@ -18,9 +18,9 @@ const Recommendation = () => {
             <Title title="Chef Recommends" subtitle="Should Try"></Title>
            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {
-                menu.slice(0,3).map(item => <ReccomendCards
+                menu.slice(0,3).map(item => <Cards
                 key={item._id}
-                item={item}></ReccomendCards>)
+                item={item}></Cards>)
             }
            </div>
 </div>
