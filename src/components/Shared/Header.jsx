@@ -7,11 +7,11 @@ const Header = () => {
 
   const { user, logOut } = useContext(AuthContext);
     const navOptions = <>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/menu">Our Menu</Link></li>
-      <li><Link to="/order/salad">Order</Link></li>
-      <li><Link to="/login">Login</Link></li>
-      <li><Link to="/register">Register</Link></li>
+      <li className="text-[#D1A054] font-semibold"><Link to="/">Home</Link></li>
+      <li className="text-[#D1A054] font-semibold"><Link to="/menu">Our Menu</Link></li>
+      <li className="text-[#D1A054] font-semibold"><Link to="/order/salad">Order</Link></li>
+      <li className="text-[#D1A054] font-semibold"><Link to="/login">Login</Link></li>
+      <li className="text-[#D1A054] font-semibold"><Link to="/register">Register</Link></li>
         
     </>
     const handleSignOut = () => {
@@ -47,12 +47,12 @@ const Header = () => {
   <div className="navbar-end">
       {
         user ? 
-       <div className="flex">
+       <div className="flex justify-center items-center gap-2">
          <div className="avatar btn btn-circle border-1 border-[#D1A054] btn-ghost">
         <div className="w-14 rounded-full">
           <img src={user.photoURL} />
         </div>
-        <p>{user.displayName
+        <p className="text-black">{user.displayName
 }</p>
       </div>
       <div>

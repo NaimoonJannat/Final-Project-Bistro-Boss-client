@@ -4,9 +4,11 @@ import Header from "./Shared/Header";
 
 const Root = () => {
     return (
-        <div className="w-4/5 mx-auto">
+        <div>
+            <div className="w-4/5 mx-auto">
             <Header></Header>
             <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     );
