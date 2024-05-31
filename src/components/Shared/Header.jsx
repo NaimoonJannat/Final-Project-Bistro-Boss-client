@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const Header = () => {
+
+  const { user, logOut } = useContext(AuthContext);
     const navOptions = <>
       <li><Link to="/">Home</Link></li>
       <li><Link to="/menu">Our Menu</Link></li>
@@ -9,6 +14,18 @@ const Header = () => {
       <li><Link to="/register">Register</Link></li>
         
     </>
+    const handleSignOut = () => {
+      logOut()
+        .then((result) => {
+          console.log(result);
+          toast.success("Logged Out Successfully!");
+        })
+        .catch((error) => {
+          console.error("Logout Error:", error);
+          toast.error("Error logging out. Please try again later.");
+        });
+      };
+
     return (
         <div className="navbar bg-black fixed z-10 opacity-60 text-white w-4/5">
   <div className="navbar-start">
@@ -28,7 +45,22 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+      {
+        user ? 
+       <div className="flex">
+         <div className="avatar btn btn-circle border-1 border-[#D1A054] btn-ghost">
+        <div className="w-14 rounded-full">
+          <img src={user.photoURL} />
+        </div>
+        <p>{user.displayName
+}</p>
+      </div>
+      <div>
+      <button onClick={handleSignOut} className="btn-xs btn font-bold bg-[#D1A054] text-black">Log Out</button>
+      </div>
+       </div>:
+       <div></div>
+      }
   </div>
 </div>
     );
