@@ -1,10 +1,20 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/others/authentication1.png"
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
+    const[loginError, setLoginError]=useState('');
+    const[loginSuccess, setLoginSuccess]=useState('');
     const emailRef= useRef(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const {signIn, signInGoogle } = useContext(AuthContext);
+    
+    // handle captcha 
     const captchaRef= useRef(null);
     const [disabled, setDisabled] = useState(true);
     useEffect( ()=>{
@@ -25,11 +35,45 @@ const Login = () => {
             const email=e.target.email.value;
             const password=e.target.password.value;
             console.log(email, password);
+
+             // reset error 
+             setLoginError('');
+             setLoginSuccess('');
+ 
+             signIn(email, password)
+             .then(result =>{
+                 console.log(result.user);
+                  // navigate after login 
+             navigate(location?.state ? location.state : '/')
+             
+                 {setLoginSuccess('Logged in successfully!');
+                 
+         }
+             })
+             .catch(error =>{
+                 console.error(error);
+                 setLoginError(error.message);
+             })
+ 
     }
 
-    const handleGoogleSignIn = ()=>{
-
+    const handleGoogleSignIn = () =>{
+        signInGoogle()
+        .then(result =>{
+            const user = result.user;
+            toast.success("Logged In Successfully!")
+            console.log(user);
+             // navigate after login 
+             navigate(location?.state ? location.state : '/')
+            // console.log(user.photoURL);
+  
+        })
+        .catch(error =>{
+            console.log(error);
+            toast.error("Error logging in. Please try again later.");
+        })
     }
+  
     
     return (
         <div className="hero min-h-screen">
@@ -79,12 +123,12 @@ const Login = () => {
               </button>
           </div>
                   </form>
-                  {/* {
+                  {
                       loginError && <p className="text-red-600">{loginError}</p>
                   }
                   {
                       loginSuccess && <p className="text-green-600">{loginSuccess}</p>
-                  } */}
+                  }
               <p>New Here? Please <Link to="/register">Register</Link> </p>
           </div>
         </div>
